@@ -18,6 +18,8 @@ function tryJson(str) {
   }
   if(!json)
     return null;
+  if(json instanceof Array)
+    return null;
 
   const ajv = new Ajv;
   return ajv.validate(schema, json) ? json : null;
