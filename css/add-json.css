@@ -1,0 +1,145 @@
+.wrapper {
+  text-align: center;
+  background: #ddd;
+  color: #333;
+  padding: 10px;
+}
+.wrapper > button {
+  background-color: #ccc;
+  border: 1px solid #222;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.wrapper > button:hover {
+  background-color: #ddd;
+}
+.wrapper > button:active {
+  background-color: #eee;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+pre {
+  margin: 10px;
+  display: none;
+}
+.wrapper > button {
+  margin: 5px 5px 0;
+}
+.visible {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.main-container {
+  max-width: 800px;
+  margin: 15px auto;
+}
+.wrapper, .main-container {
+  font-family: sans-serif;
+}
+
+.channel {
+  background-color: #eee;
+  border: 1px solid #111;
+  border-radius: 10px 10px 0 0;
+  color: #111;
+  margin-bottom: 15px;
+}
+.channel-name {
+  font-size: 2em;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px 10px 0 0;
+  background-color: #ccc;
+}
+.channel-commands {
+  border-top: 1px solid #111;
+  padding: 0 8px;
+}
+.channel-commands > div {
+  border-bottom: 1px solid rgba(0, 0, 0, .4);
+  padding: 5px 0;
+}
+.channel-commands > div:last-child {
+  border-bottom: none;
+}
+.command-description {
+  padding: 5px 0;
+  font-size: .9em;
+}
+.command-description + .command-description {
+  border-top: 1px dashed rgba(0, 0, 0, .25);
+}
+.command-name {
+  font-weight: bold;
+}
+.channel-name-arrow {
+  transform-origin: center;
+  transform: rotateZ(0);
+  transition: transform 300ms;
+  display: inline-block;
+}
+.channel-name-arrow.open {
+  transform: rotateZ(90deg);
+}
+.command-groups {
+  color: rgba(0, 0, 0, .5);
+  font-size: .9em;
+  font-weight: bold;
+}
+.command-groups::after {
+  content: ':';
+}
+
+.dark {
+  background-color: #333;
+}
+.dark .channel {
+  background-color: #252525;
+  border-color: #666;
+  color: #ccc;
+}
+.dark .wrapper {
+  background-color: #111;
+  color: #999;
+}
+.dark .wrapper > button {
+  background-color: #222;
+  color: #999;
+  border-color: #888;
+}
+.dark .wrapper > button:hover {
+  background-color: #333;
+}
+.dark .wrapper > button:active {
+  background-color: #444;
+}
+.dark .channel-name {
+  background-color: #171717;
+  color: #aaa;
+}
+.dark .channel-commands {
+  border-top-color: #888;
+}
+.dark .channel-commands > div {
+  border-bottom-color: rgba(255, 255, 255, .4);
+}
+.dark .command-description + .command-description {
+  border-top-color: rgba(255, 255, 255, .25);
+}
+.dark .command-groups {
+  color: rgba(255, 255, 255, .5);
+}
+.dark a {
+  color: #268bd2;
+}
+.dark a:visited {
+  color: #6c71c4;
+}
+.dark a:active {
+  color: #dc322f;
+}

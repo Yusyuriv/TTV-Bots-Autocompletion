@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="../css/options.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+  <p>
+    <strong>Theme:</strong>
+    <label>
+      <input type="radio" name="theme" value="light">
+      light
+    </label>
+    <label>
+      <input type="radio" name="theme" value="dark">
+      dark
+    </label>
+  </p>
+  <p>
+    <label>
+      <input type="checkbox" id="use-server">
+      Use this extension's server to automatically
+      fetch commands of supported bots
+    </label>
+  </p>
+  <p>
+    <strong>
+      Automatically fetched commands were cached for
+      these channels:
+    </strong>
+    <span id="cache-list"></span>
+  </p>
+  <p>
+    <strong>
+      Commands were manually imported for these channels:
+    </strong>
+    <span id="import-list"></span>
+  </p>
+  <p class="buttons">
+    <button id="clear-cache">
+      Clear cached server data
+    </button>
+    <button id="clear-imported">
+      Clear manually imported data
+    </button>
+    <button id="export-imported">
+      Export manually imported data
+    </button>
+  </p>
+</div>
+<div id="confirm" class="confirm">
+  <div id="confirm-text" class="confirm-text"></div>
+  <div class="confirm-buttons">
+    <button id="confirm-yes"></button>
+    <button id="confirm-no"></button>
+  </div>
+</div>
+<script src="../js/js-yaml.min.js"></script>
+<script src="../js/prefixes.js"></script>
+<script src="../js/import-export.js"></script>
+<script src="../js/options.js"></script>
+</body>
+</html>

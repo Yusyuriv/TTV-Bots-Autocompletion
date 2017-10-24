@@ -1,0 +1,61 @@
+.tba-suggestions {
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-wrap: break-word;
+  position: absolute;
+  bottom: 50px;
+  background-color: #eeeeee;
+  min-height: 30px;
+}
+.theme--dark .tba-suggestions {
+  background-color: #111111;
+}
+.tba-suggestions > .suggestion {
+  width: auto!important;
+  font-size: 12px!important;
+  line-height: 16px!important;
+  cursor: pointer;
+  padding: 2px 10px!important;
+  border-bottom: 1px solid #666;
+}
+.tba-suggestions > .suggestion:last-child {
+  border: none;
+}
+.tba-suggestions > .suggestion:hover,
+.tba-suggestions > .suggestion.highlighted {
+  background-color: #6441A4;
+  color: #eeeeee;
+}
+.tba-suggestions > .suggestion > div {
+  opacity: 0.85;
+}
+.tba-suggestions > .suggestion > div:nth-child(1) > i,
+.tba-suggestions > .suggestion > div:nth-child(2) {
+  opacity: 0.6;
+}
+.tba-suggestions > .suggestion > div > b {
+  background-color: #00247a;
+}
+.tba-suggestions > .suggestion > div:nth-child(2) {
+  font-size: 11px;
+  line-height: 12px;
+  margin-bottom: 3px;
+}
+.tba-suggestion-usergroup {
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+.tba-suggestion-usergroup:last-child {
+  margin-bottom: 0;
+}
+.tba-suggestion-usergroup > b:first-child {
+  opacity: .55;
+}
+.tba-suggestions-not-found {
+  line-height: 48px;
+  height: auto;
+}
+.tba-suggestions > .suggestion * {
+  pointer-events: none;
+}

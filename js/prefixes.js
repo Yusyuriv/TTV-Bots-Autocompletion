@@ -1,0 +1,5 @@
+const PREFIXES = {
+  LAST_UPDATE: 'LAST_UPDATE/',
+  CHANNEL: 'CHANNEL/',
+  PRESET: 'PRESET/'
+};
