@@ -103,6 +103,7 @@ function upDownHandler(e) {
   }
 }
 let lastValue;
+let infiniteScroll;
 function keyUpHandler(e) {
   let suggestionsContainer = document.querySelector('.tba-suggestions');
   if (!suggestionsContainer && !(e.ctrlKey && e.key === ' '))
@@ -119,7 +120,7 @@ function keyUpHandler(e) {
   let text = input.value.trim().toLowerCase();
   let textCommand = text.split(' ')[0];
   for (let command of commands) {
-    const foundName = search(escapeHTML(command.name), textCommand);
+    command.foundName = command.foundDescriptions = null;
     const foundName = search(escapeHTML(command.name), textCommand, options.searchType);
     if (foundName !== false)
       command.foundName = foundName;
@@ -167,12 +168,19 @@ function keyUpHandler(e) {
           <div>${descriptions.join('')}</div>
         </div>
     `;
-  }).join('');
-  suggestions = `<div class="suggestions tba-suggestions tba-suggestions-not-found">${suggestions || NOT_FOUND_MESSAGE}</div>`;
+  });
+
+  suggestionsContainer = `<div id="tba-infinite" class="suggestions tba-suggestions tba-suggestions-not-found">${suggestions.length ? '' : NOT_FOUND_MESSAGE}</div>`;
   inputContainer.querySelectorAll('.suggestions').forEach(v => {
     v.parentNode.removeChild(v);
   });
-  inputContainer.insertAdjacentHTML('beforeend', suggestions);
+  inputContainer.insertAdjacentHTML('beforeend', suggestionsContainer);
+
+  if(infiniteScroll) {
+    infiniteScroll.destroy();
+  }
+  if(suggestions.length)
+    infiniteScroll = new InfiniteScroll('#tba-infinite', suggestions);
 
   e.preventDefault();
   e.stopPropagation();
@@ -185,6 +193,11 @@ function hideSuggestions(e) {
     setTimeout(hideSuggestions, 300);
     return;
   }
+  if(infiniteScroll) {
+    infiniteScroll.destroy();
+    infiniteScroll = null;
+  }
+  lastValue = null;
   let suggestions = inputContainer.querySelector('.tba-suggestions');
   if(suggestions)
     suggestions.parentNode.removeChild(suggestions);

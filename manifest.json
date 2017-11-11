@@ -26,6 +26,7 @@
         "js/jquery.min.js",
         "js/enums.js",
         "js/utils.js",
+        "js/infinite.js",
         "js/script.js"
       ]
     },
