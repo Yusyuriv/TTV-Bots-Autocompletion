@@ -39,6 +39,9 @@
   opacity: 0.6;
 }
 .tba-suggestions .suggestion strong {
+  background-color: #0049ff;
+}
+.theme--dark .tba-suggestions .suggestion strong {
   background-color: #00247a;
 }
 .tba-suggestions .suggestion > div:nth-child(2) {
