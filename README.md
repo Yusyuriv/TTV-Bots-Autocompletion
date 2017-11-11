@@ -4,7 +4,7 @@ A browser extension that autocompletes bot commands in Twitch chat.
 If you don't uncheck the checkbox in options, it should just work automatically with the supported bots. If you're watching a streamer whose bots don't get automatically picked up, or if you are that streamer, you can manually tell the extension all commands on the channel.
 
 # File format
-If your bots aren't supported automatically, you might want to manually write down all your commands so that the extension would be able to know them and autocomplete them. Let's create a text file and call it `Yusyuriv.ttv-bots.yml`. Notice that the file name ends with `.ttv-bots.yml`. That's how the extension knows that this file contains a list of commands for one or more channels and offers the user to import them. Now open this file with a text editor and put this code into it:
+If your bots aren't supported automatically, you might want to manually write down all your commands so that the extension would be able to know them and autocomplete them. Let's create a text file and call it `test.ttv-bots.yml`. Notice that the file name ends with `.ttv-bots.yml`. That's how the extension knows that this file contains a list of commands for one or more channels and offers the user to import them. Now open this file with a text editor and put this code into it:
 
 ```yaml
 Yusyuriv: # Twitch name of the channel you're adding commands for
