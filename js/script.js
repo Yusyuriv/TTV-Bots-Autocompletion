@@ -291,12 +291,15 @@ let observer = new MutationObserver(async function(mutations) {
       keyUpHandler(e);
   }, true);
 
-  $(inputContainer)
-    .on('click', '.tba-suggestions .suggestion', e => {
+  inputContainer.addEventListener('click', e => {
+    if(!e.target.classList.contains('suggestion'))
+      return;
+    if(document.querySelector('.tba-suggestions').contains(e.target)) {
       input.value = e.target.dataset.name;
       hideSuggestions();
-    })
-    .on('focusout', hideSuggestions);
+    }
+  });
+  inputContainer.addEventListener('focusout', hideSuggestions);
   username = username.toLowerCase();
 
   chrome.storage.local.get({

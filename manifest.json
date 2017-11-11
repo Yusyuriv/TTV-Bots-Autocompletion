@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "TTV Bots Autocompletion",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false
@@ -24,7 +24,6 @@
       "js": [
         "js/prefixes.js",
         "js/utils.js",
-        "js/jquery.min.js",
         "js/enums.js",
         "js/utils.js",
         "js/infinite.js",
@@ -37,9 +36,9 @@
         "*://*/*.ttv-bots.yaml",
         "*://*/*.ttv-bots.yml",
 
-        "file://*.ttv-bots.json",
-        "file://*.ttv-bots.yaml",
-        "file://*.ttv-bots.yml"
+        "file:///*.ttv-bots.json",
+        "file:///*.ttv-bots.yaml",
+        "file:///*.ttv-bots.yml"
       ],
       "css": ["css/add-json.css"],
       "js": [
