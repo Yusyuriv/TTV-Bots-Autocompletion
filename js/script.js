@@ -225,7 +225,6 @@ function joinCommands() {
       return 1;
     return 0;
   });
-  console.log(commands);
 }
 
 function reqListener (username, channels) {
