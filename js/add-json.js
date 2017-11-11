@@ -163,5 +163,13 @@ if(json) {
   toggleChannel({ target: document.querySelector('.channel-name') });
 
   chrome.storage.onChanged.addListener(onStorageChange);
+
+  document.body.addEventListener('click', e => {
+    if(e.target.tagName === 'A')
+      if(!confirm("Links can be scary. Are you sure you want to open it?")) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+  });
 }
 pre.classList.add('visible');
