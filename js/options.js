@@ -5,6 +5,13 @@ const theme = {
 
 const useServer = document.querySelector('#use-server');
 
+const searchType = {
+  strict: document.querySelector('[name="search-type"][value="strict"]'),
+  loose: document.querySelector('[name="search-type"][value="loose"]')
+};
+
+const searchDescriptions = document.querySelector('#search-descriptions');
+
 const listCache = document.querySelector('#cache-list');
 const listImport = document.querySelector('#import-list');
 
@@ -29,15 +36,19 @@ function restore() {
     [PREFIXES.CHANNEL]: [],
     [PREFIXES.PRESET]: [],
     theme: 'light',
-    useServer: true
+    useServer: true,
+    searchType: 'loose',
+    searchDescriptions: false
   }, data => {
     theme[data.theme].checked = true;
+    searchType[data.searchType].checked = true;
 
     listCache.textContent = data[PREFIXES.CHANNEL].join(', ');
     listImport.textContent = data[PREFIXES.PRESET].join(', ');
     setListHeadersVisibility();
 
     useServer.checked = data.useServer;
+    searchDescriptions.checked = data.searchDescriptions;
   });
 }
 
@@ -50,8 +61,14 @@ function onStorageChange(changes, ns) {
       case 'theme':
         theme[changes[change].newValue || 'light'].checked = true;
         break;
+      case 'searchType':
+        searchType[changes[change].newValue || 'loose'].checked = true;
+        break;
       case 'useServer':
         useServer.checked = changes[change].newValue || false;
+        break;
+      case 'searchDescriptions':
+        searchDescriptions.checked = changes[change].newValue || false;
         break;
       case PREFIXES.CHANNEL:
       case PREFIXES.PRESET:
@@ -104,8 +121,15 @@ function saveTheme(e) {
   if(e.currentTarget.checked)
     chrome.storage.local.set({ theme: e.currentTarget.value });
 }
+function saveSearchType(e) {
+  if(e.currentTarget.checked)
+    chrome.storage.local.set({ searchType: e.currentTarget.value });
+}
 function saveUseServer(e) {
   chrome.storage.local.set({ useServer: e.currentTarget.checked })
+}
+function saveSearchDescriptions(e) {
+  chrome.storage.local.set({ searchDescriptions: e.currentTarget.checked })
 }
 function beforeClearPresets() {
   confirmOverlay({
@@ -119,7 +143,11 @@ chrome.storage.onChanged.addListener(onStorageChange);
 theme.light.addEventListener('change', saveTheme);
 theme.dark.addEventListener('change', saveTheme);
 
+searchType.loose.addEventListener('change', saveSearchType);
+searchType.strict.addEventListener('change', saveSearchType);
+
 useServer.addEventListener('change', saveUseServer);
+searchDescriptions.addEventListener('change', saveSearchDescriptions);
 
 buttonClearCache.addEventListener('click', clearCache);
 buttonClearImported.addEventListener('click', beforeClearPresets);

@@ -7,7 +7,7 @@
 <body>
 <div class="wrapper">
   <p>
-    <strong>Theme:</strong>
+    <strong>Theme (affects command file import page):</strong>
     <label>
       <input type="radio" name="theme" value="light">
       light
@@ -15,6 +15,27 @@
     <label>
       <input type="radio" name="theme" value="dark">
       dark
+    </label>
+  </p>
+  <p>
+    <strong>Search type:</strong>
+    <label class="block">
+      <input type="radio" name="search-type" value="strict">
+      strict (<code>!we</code> will match <code><strong>!we</strong>lcome</code>
+      and <code><strong>!we</strong>arenumberone</code>, but not
+      <code><strong>!w</strong>at<strong>e</strong>r</code>)
+    </label>
+    <label class="block">
+      <input type="radio" name="search-type" value="loose">
+      loose (<code>!we</code> will match <code><strong>!we</strong>lcome</code>
+      and <code><strong>!we</strong>arenumberone</code> and
+      <code><strong>!w</strong>at<strong>e</strong>r</code>)
+    </label>
+  </p>
+  <p>
+    <label>
+      <input type="checkbox" id="search-descriptions">
+      Also search in command descriptions (only recommended to use with strict search type)
     </label>
   </p>
   <p>
