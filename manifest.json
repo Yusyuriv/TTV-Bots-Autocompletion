@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Twitch Bots Autocompletion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "background": {
     "scripts": ["js/background.js"],
     "persistent": false
@@ -17,6 +17,7 @@
     {
       "matches": [
         "*://twitch.tv/*",
+        "*://go.twitch.tv/*",
         "*://www.twitch.tv/*"
       ],
       "css": ["css/style.css"],

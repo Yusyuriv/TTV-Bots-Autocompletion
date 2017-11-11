@@ -257,34 +257,46 @@ let observer = new MutationObserver(async function(mutations) {
   if(!inputContainer || inputContainer.dataset.tbaAutocompleted)
     return;
 
-  commands = [], autoCommands = [], presetCommands = [];
-
-  inputContainer.dataset.tbaAutocompleted = true;
-  input = inputContainer.querySelector('textarea');
-
-  lastValue = '';
-
-  document.body.addEventListener('keydown', e => {
-    if(e.target.tagName === 'TEXTAREA' && e.target.parentNode.classList.contains('chat-input'))
-      upDownHandler(e);
-  }, true);
-  document.body.addEventListener('keyup', e => {
-    if(e.target.tagName === 'TEXTAREA' && e.target.parentNode.classList.contains('chat-input'))
-      keyUpHandler(e);
-  }, true);
-
-  $(inputContainer)
-    .on('click', '.tba-suggestions > .suggestion', e => {
-      input.value = e.target.dataset.name;
-      hideSuggestions();
-    })
-    .on('focusout', hideSuggestions);
-
-  let username = location.href.match(/^https?:\/\/(?:www\.)twitch\.tv\/([a-z0-90-9_]+)(?:\/.*)?$/i);
+  let username = location.href.match(/^https?:\/\/(?:www\.|go\.)?twitch\.tv\/([a-z0-90-9_]+)(?:\/.*)?$/i);
   if(username)
     username = username[1];
   if(!username)
     return;
+
+  commands = [], autoCommands = [], presetCommands = [];
+
+  inputContainer.dataset.tbaAutocompleted = true;
+  input = inputContainer.querySelector('textarea');
+  if(!input.parentNode.classList.contains('chat-input'))
+    inputContainer.classList.add('tba-suggestions-beta');
+
+  lastValue = '';
+
+  document.body.addEventListener('keydown', e => {
+    if(
+      e.target.tagName === 'TEXTAREA' && (
+        e.target.parentNode.classList.contains('chat-input') ||
+        e.target.parentNode.parentNode.classList.contains('chat-input')
+      )
+    )
+      upDownHandler(e);
+  }, true);
+  document.body.addEventListener('keyup', e => {
+    if(
+      e.target.tagName === 'TEXTAREA' && (
+        e.target.parentNode.classList.contains('chat-input') ||
+        e.target.parentNode.parentNode.classList.contains('chat-input')
+      )
+    )
+      keyUpHandler(e);
+  }, true);
+
+  $(inputContainer)
+    .on('click', '.tba-suggestions .suggestion', e => {
+      input.value = e.target.dataset.name;
+      hideSuggestions();
+    })
+    .on('focusout', hideSuggestions);
   username = username.toLowerCase();
 
   chrome.storage.local.get({

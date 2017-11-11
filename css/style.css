@@ -6,7 +6,11 @@
   position: absolute;
   bottom: 50px;
   background-color: #eeeeee;
+  left: 0;
   min-height: 30px;
+}
+.tba-suggestions-beta .tba-suggestions {
+  bottom: 110px;
 }
 .theme--dark .tba-suggestions {
   background-color: #111111;
