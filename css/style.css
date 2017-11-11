@@ -10,7 +10,7 @@
   min-height: 30px;
 }
 .tba-suggestions-beta .tba-suggestions {
-  bottom: 110px;
+  bottom: 100%;
 }
 .theme--dark .tba-suggestions {
   background-color: #111111;

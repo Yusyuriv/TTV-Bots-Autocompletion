@@ -174,7 +174,7 @@ function keyUpHandler(e) {
   inputContainer.querySelectorAll('.suggestions').forEach(v => {
     v.parentNode.removeChild(v);
   });
-  inputContainer.insertAdjacentHTML('beforeend', suggestionsContainer);
+  input.parentNode.insertAdjacentHTML('beforeend', suggestionsContainer);
 
   if(infiniteScroll) {
     infiniteScroll.destroy();
