@@ -4,6 +4,36 @@ const TIME_DELAY = 1000 * 60 * 30;
 
 let commands = [], autoCommands = [], presetCommands = [];
 
+const options = {
+  searchType: 'loose',
+  searchDescriptions: false
+};
+function restoreOptions() {
+  chrome.storage.local.get({
+    searchType: 'loose',
+    searchDescriptions: false
+  }, data => {
+    Object.assign(options, data);
+  });
+}
+restoreOptions();
+function onStorageChange(changes, ns) {
+  if(ns !== 'local')
+    return;
+
+  for(let change in changes) {
+    switch(change) {
+      case 'searchType':
+        options.searchType = changes[change].newValue || 'loose';
+        break;
+      case 'searchDescriptions':
+        options.searchDescriptions = changes[change].newValue || false;
+        break;
+    }
+  }
+}
+chrome.storage.onChanged.addListener(onStorageChange);
+
 const NOT_FOUND_MESSAGE = `<div style="text-align: center">
   No commands found by your request
   <img class="emoticon" src="https://static-cdn.jtvnw.net/emoticons/v1/86/1.0">
@@ -90,10 +120,31 @@ function keyUpHandler(e) {
   let textCommand = text.split(' ')[0];
   for (let command of commands) {
     const foundName = search(escapeHTML(command.name), textCommand);
+    const foundName = search(escapeHTML(command.name), textCommand, options.searchType);
     if (foundName !== false)
       command.foundName = foundName;
+    const foundDescriptions = [];
+    const nonFoundDescriptions = [];
+    if(options.searchDescriptions) {
+      for (const description of command.descriptions) {
+        const escaped = escapeHTML(description.text);
+        const foundDescription = search(escaped, textCommand, options.searchType);
+        if (foundDescription)
+          foundDescriptions.push({
+            groups: description.groups,
+            text: foundDescription
+          });
+        else
+          nonFoundDescriptions.push({
+            groups: description.groups,
+            text: escaped
+          })
+      }
+      if (foundDescriptions.length)
+        command.foundDescriptions = foundDescriptions.concat(nonFoundDescriptions);
+    }
 
-    if(foundName) {
+    if(foundName || foundDescriptions.length) {
       suggestions.push(command);
     }
   }
@@ -101,8 +152,14 @@ function keyUpHandler(e) {
   suggestions = suggestions.map((suggestion, i) => {
     let className = i === 0 ? ' highlighted' : '';
     let descriptions = [];
-    for(let description of suggestion.descriptions) {
-      descriptions.push(`<div class="tba-suggestion-usergroup"><b>${description.groups.join(', ')}:</b><br>${escapeHTML(description.text)}</div>`);
+    if(suggestion.foundDescriptions) {
+      for (let description of suggestion.foundDescriptions) {
+        descriptions.push(`<div class="tba-suggestion-usergroup"><b>${description.groups.join(', ')}:</b><br>${description.text}</div>`);
+      }
+    } else {
+      for (let description of suggestion.descriptions) {
+        descriptions.push(`<div class="tba-suggestion-usergroup"><b>${description.groups.join(', ')}:</b><br>${escapeHTML(description.text)}</div>`);
+      }
     }
     return `
         <div class="suggestion has-info${className}" data-name="${escapeHTML(suggestion.name)}">
