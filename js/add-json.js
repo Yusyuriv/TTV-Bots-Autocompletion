@@ -32,6 +32,7 @@ if(json) {
   }, data => {
     if(data.theme === 'dark')
       document.body.classList.add('dark');
+    document.body.dataset.tbaTheme = data.theme;
   });
   for(const channelName in json) {
     if(!json.hasOwnProperty(channelName))
@@ -77,11 +78,10 @@ function yes(e) {
 }
 function no(e) {
   e.preventDefault();
-  wrapper.parentNode.removeChild(wrapper);
-  mainContainer.parentNode.removeChild(mainContainer);
+  wrapper.classList.add('hidden');
+  mainContainer.classList.add('hidden');
   pre.classList.remove('hidden');
   document.body.classList.remove('dark');
-  json = null;
 }
 let wrapper, mainContainer, pre = document.querySelector('pre');
 function parseLinks(str) {
@@ -134,6 +134,7 @@ function onStorageChange(changes, ns) {
   document.body.classList[
     changes.theme.newValue === 'dark' ? 'add' : 'remove'
   ]('dark');
+  document.body.dataset.tbaTheme = changes.theme.newValue;
 }
 
 if(json) {

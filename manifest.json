@@ -29,31 +29,15 @@
         "js/infinite.js",
         "js/script.js"
       ]
-    },
-    {
-      "matches": [
-        "*://*/*.ttv-bots.json",
-        "*://*/*.ttv-bots.yaml",
-        "*://*/*.ttv-bots.yml",
-
-        "file:///*.ttv-bots.json",
-        "file:///*.ttv-bots.yaml",
-        "file:///*.ttv-bots.yml"
-      ],
-      "css": ["css/add-json.css"],
-      "js": [
-        "js/prefixes.js",
-        "js/utils.js",
-        "js/import-export.js",
-        "js/js-yaml.min.js",
-        "js/ajv.min.js",
-        "js/schema.js",
-        "js/add-json.js"
-      ]
     }
   ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Import commands from this file"
+  },
   "permissions": [
     "https://ttv-bots.nastekali.party/",
-    "storage", "unlimitedStorage"
+    "storage", "unlimitedStorage",
+    "activeTab"
   ]
 }
