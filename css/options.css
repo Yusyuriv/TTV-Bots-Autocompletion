@@ -1,6 +1,7 @@
 body {
   overflow: hidden;
-  min-width: 450px
+  min-width: 450px;
+  font-size: .85rem;
 }
 .wrapper > div {
   margin: 8px 0;
@@ -38,4 +39,10 @@ body {
 .confirm-buttons {
   margin-top: 10px;
   text-align: center;
+}
+.block {
+  display: block;
+}
+label > code > strong {
+  background: #ccc;
 }
