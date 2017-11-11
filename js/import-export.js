@@ -7,8 +7,7 @@ function importPresets(json, cb) {
     [PREFIXES.PRESET]: []
   };
   const keys = Object.keys(json).map(v => {
-    v = v.toLowerCase();
-    const newKey = PREFIXES.PRESET + v;
+    const newKey = PREFIXES.PRESET + v.toLowerCase();
     json[newKey] = json[v];
     delete json[v];
     return newKey;
