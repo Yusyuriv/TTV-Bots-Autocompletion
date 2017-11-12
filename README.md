@@ -38,6 +38,9 @@ Yusyuriv:
 
 Now that you have this file, how do you add it in the extension? It's very simple: just drag the file into your browser (or open the link to the file if it's hosted somewhere) and press this extension's icon in your browser. If the file doesn't have errors, it will offer you to import these commands into the extension. If you're a streamer and want your viewers to be able to easily use it (assuming they have the extension installed), you can host it somewhere and give them direct link to it — result will be the same.
 
+# Import example
+[Here][Import example] you can see an example of a file that you can import into extension, and [here][My Twitch chat] you can test it.
+
 # Supported bots
 This is the list of bots that should just work without importing anything or writing any configs (provided that they're in the streamer's chat under their original username, i.e. Nightbot is under Nightbot account etc):
 
@@ -51,3 +54,5 @@ This is the list of bots that should just work without importing anything or wri
 [Moobot]: https://twitch.moobot.tv/
 [Nightbot]: https://beta.nightbot.tv/
 [StreamElements]: https://streamelements.com/
+[Import example]: raw/master/Command-example.ttv-bots.yml
+[My Twitch chat]: https://www.twitch.tv/yusyuriv/chat
