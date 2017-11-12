@@ -268,7 +268,7 @@ let observer = new MutationObserver(async function(mutations) {
   inputContainer.dataset.tbaAutocompleted = true;
   input = inputContainer.querySelector('textarea');
   if(!input.parentNode.classList.contains('chat-input'))
-    inputContainer.classList.add('tba-suggestions-beta');
+    inputContainer.classList.add('tba-suggestions-rewrite');
 
   lastValue = '';
 
