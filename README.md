@@ -54,5 +54,5 @@ This is the list of bots that should just work without importing anything or wri
 [Moobot]: https://twitch.moobot.tv/
 [Nightbot]: https://beta.nightbot.tv/
 [StreamElements]: https://streamelements.com/
-[Import example]: raw/master/Command-example.ttv-bots.yml
+[Import example]: ../../raw/master/Command-example.ttv-bots.yml
 [My Twitch chat]: https://www.twitch.tv/yusyuriv/chat
