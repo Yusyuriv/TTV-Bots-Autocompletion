@@ -84,6 +84,8 @@ function upDownHandler(e) {
   if(e.key === 'Escape') {
     hideSuggestions();
     e.preventDefault();
+    e.stopPropagation();
+    e.stopImmediatePropagation();
   }
   if(!ALLOWED_KEYS_WHEN_CHOOSING_COMMAND.includes(e.key))
     return;
