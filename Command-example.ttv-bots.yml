@@ -1,0 +1,15 @@
+Yusyuriv:
+  - name: !definitely-non-existent-command
+    descriptions:
+      - groups:
+        - Moderators
+        - Broadcaster
+        text: This command doesn't exist, and is here solely to demonstrate how you can import commands.
+  - name: !another-example
+    descriptions:
+      - groups:
+        - Broadcaster
+        text: This is the response to broadcaster.
+      - groups:
+        - Everyone
+        text: This command doesn't exist either, and is here solely to demonstrate how you can import commands.
