@@ -261,7 +261,9 @@ let observer = new MutationObserver(async function(mutations) {
   if(!inputContainer || inputContainer.dataset.tbaAutocompleted)
     return;
 
-  username = location.href.match(/^https?:\/\/(?:www\.|go\.)?twitch\.tv\/([a-z0-90-9_]+)(?:\/.*)?$/i);
+  username = location.href.match(/^https?:\/\/(?:www\.|go\.)?twitch\.tv\/popout\/([a-z0-90-9_]+)\/chat(?:[?/].*)?$/i);
+  if(!username)
+    username = location.href.match(/^https?:\/\/(?:www\.|go\.)?twitch\.tv\/([a-z0-90-9_]+)(?:\/.*)?$/i);
   if(username)
     username = username[1];
   if(!username)
