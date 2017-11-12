@@ -2,6 +2,7 @@ const API_KEY = '08ZJvhr2X2hBzNpC4GNw8zEGXLJtOSqd';
 
 const TIME_DELAY = 1000 * 60 * 30;
 
+let username;
 let commands = [], autoCommands = [], presetCommands = [];
 
 const options = {
@@ -214,8 +215,9 @@ function fixGroups(arr) {
   }
 }
 function joinCommands() {
-  commands = autoCommands;
-  for(const command of presetCommands) {
+  commands = JSON.parse(JSON.stringify(autoCommands));
+  const presets = JSON.parse(JSON.stringify(presetCommands));
+  for(const command of presets) {
     let found = searchByName(commands, command.name);
     if(!found) {
       found = {
@@ -259,7 +261,7 @@ let observer = new MutationObserver(async function(mutations) {
   if(!inputContainer || inputContainer.dataset.tbaAutocompleted)
     return;
 
-  let username = location.href.match(/^https?:\/\/(?:www\.|go\.)?twitch\.tv\/([a-z0-90-9_]+)(?:\/.*)?$/i);
+  username = location.href.match(/^https?:\/\/(?:www\.|go\.)?twitch\.tv\/([a-z0-90-9_]+)(?:\/.*)?$/i);
   if(username)
     username = username[1];
   if(!username)
@@ -332,4 +334,16 @@ let observer = new MutationObserver(async function(mutations) {
 observer.observe(document.body, {
   childList: true,
   subtree: true
+});
+chrome.storage.onChanged.addListener(function(changes, ns) {
+  if(ns !== 'local' || !username)
+    return;
+  const key = PREFIXES.PRESET + username;
+  if(!changes[key])
+    return;
+  if(changes[key].newValue)
+    presetCommands = changes[key].newValue;
+  else
+    presetCommands = [];
+  joinCommands();
 });
