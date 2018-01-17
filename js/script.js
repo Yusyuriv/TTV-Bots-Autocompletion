@@ -48,13 +48,21 @@ function isFullyVisible(el) {
   let scrollHeight = scrollTop + el.parentNode.clientHeight;
   return top - scrollTop >= 0 && bottom - scrollHeight <= 0;
 }
+function setReactValue(input, value) {
+  input.value = value;
+  input.defaultValue = value;
+  input.dispatchEvent(new Event("input", {
+    bubbles: true, target: input, data: value
+  }));
+}
 function enterCommand(suggestion) {
   let commandName = suggestion.dataset.name;
   let command = commands.filter(v => v.name === commandName)[0];
 
   let inputtedCommand = input.value.trim().split(' ')[0].trim();
   if(inputtedCommand !== command.name)
-    input.value = command.name + ' ';
+    setReactValue(input, command.name + ' ');
+    // input.value = command.name + ' ';
   hideSuggestions();
 }
 function scrollCommands(suggestion, key) {
@@ -301,7 +309,9 @@ let observer = new MutationObserver(async function(mutations) {
     if(!e.target.classList.contains('suggestion'))
       return;
     if(document.querySelector('.tba-suggestions').contains(e.target)) {
-      input.value = e.target.dataset.name;
+      setReactValue(input, e.target.dataset.name);
+      input.focus();
+      // input.value = e.target.dataset.name;
       hideSuggestions();
     }
   });
