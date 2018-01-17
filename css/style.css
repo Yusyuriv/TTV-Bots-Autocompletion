@@ -8,11 +8,13 @@
   background-color: #eeeeee;
   left: 0;
   min-height: 30px;
+  border: 1px solid #7C5CB9;
+  border-bottom: none;
 }
 .tba-suggestions-rewrite .tba-suggestions {
   bottom: 100%;
 }
-.theme--dark .tba-suggestions {
+.tw-theme--dark .tba-suggestions {
   background-color: #111111;
 }
 .tba-suggestions .suggestion {
@@ -62,6 +64,9 @@
 .tba-suggestions-not-found {
   line-height: 48px;
   height: auto;
+}
+.tba-suggestions-not-found .emoticon {
+  vertical-align: middle;
 }
 .tba-suggestions > .suggestion * {
   pointer-events: none;
