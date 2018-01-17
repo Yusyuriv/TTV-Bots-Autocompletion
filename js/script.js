@@ -36,7 +36,7 @@ function onStorageChange(changes, ns) {
 chrome.storage.onChanged.addListener(onStorageChange);
 
 const NOT_FOUND_MESSAGE = `<div style="text-align: center">
-  No commands found by your request
+  Your search didn't match any commands
   <img class="emoticon" src="https://static-cdn.jtvnw.net/emoticons/v1/86/1.0">
 </div>`;
 let inputContainer;
