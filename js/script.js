@@ -290,7 +290,8 @@ let observer = new MutationObserver(async function(mutations) {
     if(
       e.target.tagName === 'TEXTAREA' && (
         e.target.parentNode.classList.contains('chat-input') ||
-        e.target.parentNode.parentNode.classList.contains('chat-input')
+        e.target.parentNode.parentNode.classList.contains('chat-input') ||
+        e.target.parentNode.parentNode.parentNode.classList.contains('chat-input')
       )
     )
       upDownHandler(e);
@@ -299,7 +300,8 @@ let observer = new MutationObserver(async function(mutations) {
     if(
       e.target.tagName === 'TEXTAREA' && (
         e.target.parentNode.classList.contains('chat-input') ||
-        e.target.parentNode.parentNode.classList.contains('chat-input')
+        e.target.parentNode.parentNode.classList.contains('chat-input') ||
+        e.target.parentNode.parentNode.parentNode.classList.contains('chat-input')
       )
     )
       keyUpHandler(e);
