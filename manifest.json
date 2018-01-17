@@ -16,9 +16,11 @@
   "content_scripts": [
     {
       "matches": [
-        "*://twitch.tv/*",
-        "*://go.twitch.tv/*",
-        "*://www.twitch.tv/*"
+        "http://twitch.tv/*",
+        "http://www.twitch.tv/*",
+
+        "https://twitch.tv/*",
+        "https://www.twitch.tv/*"
       ],
       "css": ["css/style.css"],
       "js": [
