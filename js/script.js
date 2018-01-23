@@ -1,4 +1,5 @@
 const API_KEY = '08ZJvhr2X2hBzNpC4GNw8zEGXLJtOSqd';
+const REGEXP_POPOUT = /^https?:\/\/(?:www\.)?twitch\.tv\/(?:popout\/)?([^/]+)\/chat(?:\?popout=.*)?$/i;
 
 const TIME_DELAY = 1000 * 60 * 30;
 
@@ -204,6 +205,8 @@ function hideSuggestions(e) {
     setTimeout(hideSuggestions, 300);
     return;
   }
+  if(!inputContainer)
+    return;
   if(infiniteScroll) {
     infiniteScroll.destroy();
     infiniteScroll = null;
@@ -264,7 +267,23 @@ function reqListener (username, channels) {
   joinCommands();
 }
 
+function injectIntoFrames() {
+  chrome.runtime.sendMessage('injectIntoIframe');
+}
+
 let observer = new MutationObserver(async function(mutations) {
+  const frames = document.querySelectorAll('iframe');
+  let needsInjection = false;
+  for(const frame of frames) {
+    if(!frame.src.match(REGEXP_POPOUT))
+      continue;
+    if(!frame.dataset.ttvBotsAutocompleted) {
+      frame.dataset.ttvBotsAutocompleted = '1';
+      needsInjection = true;
+    }
+  }
+  if(needsInjection)
+    setTimeout(injectIntoFrames, 5000);
   inputContainer = document.querySelector('.chat-input');
   if(!inputContainer || inputContainer.dataset.tbaAutocompleted)
     return;
