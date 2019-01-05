@@ -14,7 +14,7 @@
 .tba-suggestions-rewrite .tba-suggestions {
   bottom: 100%;
 }
-.tw-theme--dark .tba-suggestions {
+.tw-root--theme-dark .tba-suggestions {
   background-color: #111111;
 }
 .tba-suggestions .suggestion {
