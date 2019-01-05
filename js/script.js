@@ -252,6 +252,17 @@ function joinCommands() {
   });
 }
 
+function checkParentsForClass(elem, cls, amount = 1) {
+  if(amount < 1 || !isFinite(amount))
+    return null;
+  for(; amount > 0; amount--) {
+    elem = elem.parentNode;
+    if(elem.classList.contains(cls)) {
+      return true;
+    }
+  }
+  return false;
+}
 function reqListener (username, channels) {
   autoCommands = JSON.parse(this.responseText);
   if(!channels.includes(username))
@@ -288,21 +299,13 @@ let observer = new MutationObserver(async function(mutations) {
 
   document.body.addEventListener('keydown', e => {
     if(
-      e.target.tagName === 'TEXTAREA' && (
-        e.target.parentNode.classList.contains('chat-input') ||
-        e.target.parentNode.parentNode.classList.contains('chat-input') ||
-        e.target.parentNode.parentNode.parentNode.classList.contains('chat-input')
-      )
+        e.target.tagName === 'TEXTAREA' && checkParentsForClass (e.target, 'chat-input', 5)
     )
       upDownHandler(e);
   }, true);
   document.body.addEventListener('keyup', e => {
     if(
-      e.target.tagName === 'TEXTAREA' && (
-        e.target.parentNode.classList.contains('chat-input') ||
-        e.target.parentNode.parentNode.classList.contains('chat-input') ||
-        e.target.parentNode.parentNode.parentNode.classList.contains('chat-input')
-      )
+        e.target.tagName === 'TEXTAREA' && checkParentsForClass (e.target, 'chat-input', 5)
     )
       keyUpHandler(e);
   }, true);
